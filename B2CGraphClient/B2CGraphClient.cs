@@ -82,25 +82,25 @@ namespace B2CGraphShell
 
         private async Task<string> SendGraphDeleteRequest(string api)
         {
-            return await SendRequest(HttpMethod.Delete, api);
+            return await SendRequestAsync(HttpMethod.Delete, api);
         }
 
         private async Task<string> SendGraphPatchRequest(string api, string json)
         {
-            return await SendRequest(new HttpMethod("PATCH"), api, null, json);
+            return await SendRequestAsync(new HttpMethod("PATCH"), api, null, json);
         }
 
         private async Task<string> SendGraphPostRequest(string api, string json)
         {
-            return await SendRequest(HttpMethod.Post, api, null, json);
+            return await SendRequestAsync(HttpMethod.Post, api, null, json);
         }
 
         public async Task<string> SendGraphGetRequest(string api, string query)
         {
-            return await SendRequest(HttpMethod.Get, api, query);
+            return await SendRequestAsync(HttpMethod.Get, api, query);
         }
 
-        private async Task<string> SendRequest(HttpMethod method, string api, string query = null, string json = null)
+        private async Task<string> SendRequestAsync(HttpMethod method, string api, string query = null, string json = null)
         {
             // NOTE: This client uses ADAL v2, not ADAL v4
             HttpClient http = new HttpClient();
