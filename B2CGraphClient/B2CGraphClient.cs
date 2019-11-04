@@ -64,7 +64,10 @@ namespace B2CGraphShell
         {
             return await SendGraphPostRequest("/applications/" + objectId + "/extensionProperties", body);
         }
-
+        public async Task<string> UpdateExtension(string objectId, string body)
+        {
+            return await SendGraphPatchRequest("/applications/" + objectId + "/extensionProperties", body);
+        }
         public async Task<string> UnregisterExtension(string appObjectId, string extensionObjectId)
         {
             return await SendGraphDeleteRequest("/applications/" + appObjectId + "/extensionProperties/" + extensionObjectId);
