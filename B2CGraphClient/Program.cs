@@ -91,15 +91,15 @@ namespace B2CGraphShell
             string result;
             if (args.Length <= 1)
             {
-                result = client.GetAllUsers(null).Result;
+                result = client.GetAllUsersAsync(null).Result;
             }
             else if (Guid.TryParse(args[1], out temp))
             {
-                result = client.GetUserByObjectId(args[1]).Result;
+                result = client.GetUserByObjectIdAsync(args[1]).Result;
             }
             else
             {
-                result = client.GetAllUsers(args[1]).Result;
+                result = client.GetAllUsersAsync(args[1]).Result;
             }
 
             object formatted = JsonConvert.DeserializeObject(result);
@@ -118,7 +118,7 @@ namespace B2CGraphShell
             }
 
             string json = File.ReadAllText(args[1]);
-            object formatted = JsonConvert.DeserializeObject(client.CreateUser(json).Result);
+            object formatted = JsonConvert.DeserializeObject(client.CreateUserAsync(json).Result);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(JsonConvert.SerializeObject(formatted, Formatting.Indented));
         }
@@ -134,7 +134,7 @@ namespace B2CGraphShell
             }
 
             string json = File.ReadAllText(args[2]);
-            object formatted = JsonConvert.DeserializeObject(client.UpdateUser(args[1], json).Result);
+            object formatted = JsonConvert.DeserializeObject(client.UpdateUserAsync(args[1], json).Result);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(JsonConvert.SerializeObject(formatted, Formatting.Indented));
         }
@@ -149,7 +149,7 @@ namespace B2CGraphShell
                 return;
             }
 
-            object formatted = JsonConvert.DeserializeObject(client.DeleteUser(args[1]).Result);
+            object formatted = JsonConvert.DeserializeObject(client.DeleteUserAsync(args[1]).Result);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(JsonConvert.SerializeObject(formatted, Formatting.Indented));
         }
@@ -164,7 +164,7 @@ namespace B2CGraphShell
                 return;
             }
 
-            object formatted = JsonConvert.DeserializeObject(client.GetExtensions(args[1]).Result);
+            object formatted = JsonConvert.DeserializeObject(client.GetExtensionsAsync(args[1]).Result);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(JsonConvert.SerializeObject(formatted, Formatting.Indented));
         }
@@ -180,7 +180,7 @@ namespace B2CGraphShell
             }
 
             string json = File.ReadAllText(args[2]);
-            object formatted = JsonConvert.DeserializeObject(client.RegisterExtension(args[1], json).Result);
+            object formatted = JsonConvert.DeserializeObject(client.RegisterExtensionAsync(args[1], json).Result);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(JsonConvert.SerializeObject(formatted, Formatting.Indented));
         }
@@ -196,7 +196,7 @@ namespace B2CGraphShell
             }
 
             string json = File.ReadAllText(args[2]);
-            object formatted = JsonConvert.DeserializeObject(client.UpdateExtension(args[1], json).Result);
+            object formatted = JsonConvert.DeserializeObject(client.UpdateExtensionAsync(args[1], json).Result);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(JsonConvert.SerializeObject(formatted, Formatting.Indented));
         }
@@ -204,7 +204,7 @@ namespace B2CGraphShell
 
         private static void GetB2CExtensionApplication(string[] args)
         {
-            object formatted = JsonConvert.DeserializeObject(client.GetApplications("$filter=startswith(displayName, 'b2c-extensions-app')").Result);
+            object formatted = JsonConvert.DeserializeObject(client.GetApplicationsAsync("$filter=startswith(displayName, 'b2c-extensions-app')").Result);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(JsonConvert.SerializeObject(formatted, Formatting.Indented));
         }
